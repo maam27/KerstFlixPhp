@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
 </head>
 <body>
+<?php
+    //include_once 'partial/nav.php';
+?>
 <nav>
     <div>
         <div>
@@ -34,7 +37,6 @@
                     </ul>
                 </li>
             </ul>
-
         </div>
     </div>
 </nav>
