@@ -19,7 +19,7 @@
                     <ul>
                         <li class="right"><a href="mijnaccount.php">Mijn account</a></li>
                         <li class="right"><a href="abonnementen.php">Registreren</a></li>
-                        <li class="right"><a href="#">Uitloggen</a></li>
+                        <li class="right"><a href="logout.php">Uitloggen</a></li>
                     </ul>
                 </li>
             </ul>

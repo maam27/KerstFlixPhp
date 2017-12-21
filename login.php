@@ -9,48 +9,56 @@
     </head>
     <body>
         <?php
-        //open database connection
-        require_once 'php/db-conn.php';
+        //remove before done
+        echo 'debug user info <br>';
+        echo 'a.nunc@seddolor.com <br>';
+        echo 'In<br>';
+        ?>
 
+        <?php
+        //load required functions
+        require_once 'php/db-functions.php';
+        require_once 'php/user-functions.php';
+        //open database connection
+        $dbh = db_connect();
+        session_start();
         //load navigation menu
         include_once 'partial/nav.php';
         ?>
 
         <?php
-        echo 'debug user info <br>';
-        echo 'a.nunc@seddolor.com <br>';
-        echo 'In<br>';
-
-        if(ISSET($_POST['username']) && ISSET($_POST['password'])){
-            $userName = $dbh->quote($_POST['username']);
-            $password = $dbh->quote($_POST['password']);
-
-            try {
-                $data = $dbh->query("SELECT user_name FROM Customer where customer_mail_address = {$userName} and password = {$password}");
-                $result = $data->fetch();
-
-                if(!is_null($result)){
-                    if(!is_null($result['user_name'])){
-                        echo 'login';
-                        session_start();
-                        $_SESSION['user'] = $result['user_name'];
-                        echo '<p>a</p>';
-                    }
-                }
-                else{
-                    echo '<p>b</p>';
-                }
-            }catch(mysqli_sql_exception $exception){
+        //redirect naar profiel pagina als ingelogd
+        if(ISSET($_SESSION['user'])){
+            if(!IS_NULL($_SESSION['user'])){
+                header("Location: mijnaccount.php");
             }
         }
         ?>
 
-        <form method="Post" action="">
-            <input id="username" name="username" type="mail"        placeholder="E-mail"    required    value="<?=$_POST['username']?>">
-            <input id="password" name="password" type="password"    placeholder="password"  required>
-            <button>verzend</button>
-        </form>
+        <?php
+        //try logging in
+        if(ISSET($_POST['username']) && ISSET($_POST['password'])){
+            login_user($dbh,$_POST['username'],$_POST['password']);
+        }
+        ?>
 
+        <?php
+        //fill form fiels with user input when login failed
+        $username;
+        if(isset($_POST['username'])){
+            $username = $_POST['username'];
+        };
+        ?>
+
+        <div class="login">
+            <div>
+                <form method="Post" action="">
+                    <input id="username" name="username" type="mail"        placeholder="E-mail"    required    value="">
+                    <input id="password" name="password" type="password"    placeholder="password"  required>
+                    <button>login</button>
+                </form>
+            </div>
+        </div>
         <footer>
             &copy; KerstFlix Inc. 2017
         </footer>
