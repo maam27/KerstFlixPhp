@@ -9,15 +9,4 @@ function db_connect(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 ?>

@@ -9,6 +9,12 @@
 </head>
 <body>
 <?php
+    //load required functions
+    require_once 'php/db-functions.php';
+    //open database connection
+    $dbh = db_connect();
+    session_start();
+    //load navigation menu
     include_once 'partial/nav.php';
 ?>
 

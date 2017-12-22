@@ -1,20 +1,32 @@
 <?php
 function login_user($dbh, $user, $pass){
-    $userName = $dbh->quote($user);
-    $password = $dbh->quote($pass);
-    try {
-        $data = $dbh->query("SELECT user_name FROM Customer where customer_mail_address = {$userName} and password = {$password}");
-        $result = $data->fetch();
+    //old login query
+    //$userName = $dbh->quote($user);
+    //$password = $dbh->quote($pass);
+    //$data = $dbh->query("SELECT user_name FROM Customer where customer_mail_address = {$userName} and password = {$password}");
+    //$result = $data->fetch();
 
-        if(!is_null($result)){
-            if(!is_null($result['user_name'])){
-                echo 'login gelukt';
-                $_SESSION['user'] = $result['user_name'];
-                header("Location: index.php");
-            }
+    $statement = $dbh->prepare("SELECT user_name FROM Customer where customer_mail_address = :name and password = :pass ");
+    $statement->execute(array(  ':name' => $user,
+                                ':pass' => $pass));
+    $result = $statement->fetch();
+
+    if(!is_null($result)){
+        if(!is_null($result['user_name'])){
+            echo 'login gelukt';
+            $_SESSION['user'] = $result['user_name'];
+            header("Location: index.php");
         }
-        else{
-        }
-    }catch(mysqli_sql_exception $exception){
+    }
+}
+
+function requireLogin(){
+    if( !isset($_SESSION)){
+        session_start();
+    }
+    if(!ISSET($_SESSION['user'])){
+        header("Location: login.php");
+    } else if(IS_NULL($_SESSION['user'])){
+        header("Location: login.php");
     }
 }

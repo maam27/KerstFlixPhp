@@ -9,6 +9,15 @@
 </head>
 <body class="no-padding">
 <?php
+    //load required functions
+    require_once 'php/user-functions.php';
+    require_once 'php/db-functions.php';
+    //open database connection
+    $dbh = db_connect();
+    session_start();
+    //check if the user is logged in, if not redirect to the login page
+    requireLogin();
+    //load navigation menu
     include_once 'partial/nav.php';
 ?>
 

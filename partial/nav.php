@@ -1,3 +1,9 @@
+<?php
+if( !isset($_SESSION)){
+    session_start();
+}
+?>
+
 <nav>
     <div>
         <div>
@@ -15,14 +21,30 @@
         </div>
         <div>
             <ul>
+                <?php
+                if(ISSET($_SESSION['user']))                {
+                    if(!IS_NULL($_SESSION['user'])){
+                    ?>
                 <li><a href="#">Bob Ross</a>
                     <ul>
                         <li class="right"><a href="mijnaccount.php">Mijn account</a></li>
-                        <li class="right"><a href="abonnementen.php">Registreren</a></li>
                         <li class="right"><a href="logout.php">Uitloggen</a></li>
                     </ul>
                 </li>
+                <?php
+                }}
+                else
+                { ?>
+                <li><a href="abonnementen.php">Registreer</a>
+                    <ul>
+                        <li class="right"><a href="login.php">Inloggen</a></li>
+                    </ul>
+                </li>
+                <?php
+                }
+                ?>
             </ul>
         </div>
     </div>
 </nav>
+

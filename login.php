@@ -27,12 +27,12 @@
         ?>
 
         <?php
-        //redirect naar profiel pagina als ingelogd
-        if(ISSET($_SESSION['user'])){
-            if(!IS_NULL($_SESSION['user'])){
-                header("Location: mijnaccount.php");
+            //redirect naar profiel pagina als ingelogd
+            if(ISSET($_SESSION['user'])){
+                if(!IS_NULL($_SESSION['user'])){
+                    header("Location: index.php");
+                }
             }
-        }
         ?>
 
         <?php
