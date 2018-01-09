@@ -39,6 +39,7 @@
         //try logging in
         if(ISSET($_POST['username']) && ISSET($_POST['password'])){
             login_user($dbh,$_POST['username'],$_POST['password']);
+            echo 'test';
         }
         ?>
 
