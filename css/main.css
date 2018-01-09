@@ -343,6 +343,10 @@ positioning and sizes
 /*//////////////////////////////
 generic classes
 //////////////////////////////*/
+.white{
+    color:white;
+}
+
 footer {
     text-align: right
 }

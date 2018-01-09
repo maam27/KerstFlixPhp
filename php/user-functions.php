@@ -13,7 +13,6 @@ function login_user($dbh, $user, $pass){
 
     if(!is_null($result)){
         if(!is_null($result['user_name'])){
-            echo 'login gelukt';
             $_SESSION['user'] = $result['user_name'];
             header("Location: index.php");
         }
@@ -21,12 +20,21 @@ function login_user($dbh, $user, $pass){
 }
 
 function requireLogin(){
-    if( !isset($_SESSION)){
+    if (!isset($_SESSION)) {
         session_start();
     }
-    if(!ISSET($_SESSION['user'])){
+    if (!ISSET($_SESSION['user'])) {
         header("Location: login.php");
-    } else if(IS_NULL($_SESSION['user'])){
+    } else if (IS_NULL($_SESSION['user'])) {
         header("Location: login.php");
     }
+}
+
+function gebruikerIsIngelogd(){
+    if(ISSET($_SESSION['user'])){
+        if(!IS_NULL($_SESSION['user'])){
+            return true;
+        }
+    }
+    return false;
 }

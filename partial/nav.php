@@ -2,6 +2,7 @@
 if( !isset($_SESSION)){
     session_start();
 }
+require_once 'php/user-functions.php';
 ?>
 
 <nav>
@@ -22,24 +23,20 @@ if( !isset($_SESSION)){
         <div>
             <ul>
                 <?php
-                if(ISSET($_SESSION['user']))                {
-                    if(!IS_NULL($_SESSION['user'])){
+                if(gebruikerIsIngelogd()){
                     ?>
-                <li><a href="#">Bob Ross</a>
+                <li><a href="#"><?=$_SESSION['user']?></a>
                     <ul>
                         <li class="right"><a href="mijnaccount.php">Mijn account</a></li>
                         <li class="right"><a href="logout.php">Uitloggen</a></li>
                     </ul>
                 </li>
                 <?php
-                }}
+                }
                 else
                 { ?>
-                <li><a href="abonnementen.php">Registreer</a>
-                    <ul>
-                        <li class="right"><a href="login.php">Inloggen</a></li>
-                    </ul>
-                </li>
+                    <li><a href="abonnementen.php">Registreer</a></li><span class="white">/</span>
+                    <li><a href="login.php">Inloggen</a></li>
                 <?php
                 }
                 ?>
