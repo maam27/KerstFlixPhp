@@ -2,7 +2,7 @@ html {
     background: url("../img/background.jpg") fixed;
     background-size: cover;
     font-family: 'Exo 2', sans-serif;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 body {
@@ -53,6 +53,7 @@ nav {
     border-radius: 5px;
     z-index: 5;
     align-items: center;
+    font-size: 24px;
 }
 
 nav > div {
@@ -218,7 +219,7 @@ subscription
     border: 2px solid black;
     min-height: 200px;
     padding: 5px;
-    border-radius: 20px;
+    border-radius: 10px;
     height: 100%;
 }
 
@@ -298,10 +299,10 @@ login
     display:flex;
     justify-content:center;
 }
-.login div{
+.login > div{
     width:40%;
 }
-.login div button{
+.login > div button{
     float: right;
 }
 
@@ -345,6 +346,10 @@ generic classes
 //////////////////////////////*/
 .white{
     color:white;
+}
+
+.error-message{
+    color:red;
 }
 
 footer {

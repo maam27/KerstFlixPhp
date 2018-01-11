@@ -20,8 +20,6 @@ session_start();
 include_once 'partial/nav.php';
 ?>
 
-
-
 <div class="movies">
     <div class="full-width"">
         <h1>Filmoverzicht</h1>

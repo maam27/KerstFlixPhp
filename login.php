@@ -35,26 +35,26 @@
             }
         ?>
 
-        <?php
-        //try logging in
-        if(ISSET($_POST['username']) && ISSET($_POST['password'])){
-            login_user($dbh,$_POST['username'],$_POST['password']);
-            echo 'test';
-        }
-        ?>
-
-        <?php
-        //fill form fiels with user input when login failed
-        $username;
-        if(isset($_POST['username'])){
-            $username = $_POST['username'];
-        };
-        ?>
 
         <div class="login">
-            <div>
+             <div>
+                <?php
+                //try logging in
+                if(ISSET($_POST['username']) && ISSET($_POST['password'])){
+                    login_user($dbh,$_POST['username'],$_POST['password']);
+                    echo <<<login_fout
+                    <div class="error-message" >De combinatie van e-mailadres en wachtwoord is niet geldig.</div>
+login_fout;
+                }
+                //fill form fiels with user input when login failed
+                $username = "";
+                if(isset($_POST['username'])){
+                    $username = $_POST['username'];
+                };
+                ?>
+
                 <form method="Post" action="">
-                    <input id="username" name="username" type="mail"        placeholder="E-mail"    required    value="">
+                    <input id="username" name="username" type="mail"        placeholder="E-mail"    required    value="<?=$username?>">
                     <input id="password" name="password" type="password"    placeholder="password"  required>
                     <button>login</button>
                 </form>
@@ -66,4 +66,6 @@
     </body>
 </html>
 
-
+In de header verschijnt de naam van de ingelogde bezoeker, de weekdag, de datum en de
+inlogtijd in het Nederlands. Zoiets als "Peter Brouwmeester op zaterdag 24 mei, ingelogd sinds
+20:15 uur"
