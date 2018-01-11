@@ -4,7 +4,6 @@ if( !isset($_SESSION)){
 }
 require_once 'php/user-functions.php';
 ?>
-
 <nav>
     <div>
         <div>
@@ -24,7 +23,7 @@ require_once 'php/user-functions.php';
         <div>
             <ul>
                 <?php
-                if(gebruikerIsIngelogd()){
+                if(userIsLoggedIn()){
                     ?>
                 <li><a href="#"><?=$_SESSION['user']?></a>
                     <ul>

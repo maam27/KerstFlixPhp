@@ -15,6 +15,7 @@ require_once 'php/film-functions.php';
 //open database connection
 $dbh = db_connect();
 session_start();
+
 //load navigation menu
 include_once 'partial/nav.php';
 ?>
@@ -30,9 +31,12 @@ include_once 'partial/nav.php';
     <!-- filmId, naam, img-->
     <div class="flex" style="flex-wrap:wrap;justify-content: space-around">
         <?php
+
+            //requireLogin
+
             $filter="";
             $order = "movie_id desc";
-            echo haalFilmsOp($dbh,$filter,$order);
+            echo getFilms($dbh,$filter,$order);
         ?>
     </div>
 

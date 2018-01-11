@@ -24,12 +24,12 @@ function requireLogin(){
         session_start();
     }
 
-    if(!gebruikerIsIngelogd()){
+    if(!userIsLoggedIn()){
         header("Location: login.php");
     }
 }
 
-function gebruikerIsIngelogd(){
+function userIsLoggedIn(){
     if(ISSET($_SESSION['user'])){
         if(!IS_NULL($_SESSION['user'])){
             return true;
