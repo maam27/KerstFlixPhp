@@ -4,7 +4,6 @@ if( !isset($_SESSION)){
 }
 require_once 'php/user-functions.php';
 ?>
-
 <nav>
     <div>
         <div>
@@ -12,6 +11,7 @@ require_once 'php/user-functions.php';
                 <li><a href="index.php">Home</a></li>
                 <li><a href="filmoverzicht.php">Films</a>
                     <ul>
+                        <li><a href="films.php">Alle films</a></li>
                         <li><a href="filmoverzicht.php#recent">Recent Toegevoegd</a></li>
                         <li><a href="filmoverzicht.php#voor-het-gezin">Voor het gezin</a></li>
                         <li><a href="filmoverzicht.php#klassiekers">Klassiekers</a></li>
@@ -23,7 +23,7 @@ require_once 'php/user-functions.php';
         <div>
             <ul>
                 <?php
-                if(gebruikerIsIngelogd()){
+                if(userIsLoggedIn()){
                     ?>
                 <li><a href="#"><?=$_SESSION['user']?></a>
                     <ul>

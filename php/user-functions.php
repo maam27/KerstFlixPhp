@@ -23,14 +23,13 @@ function requireLogin(){
     if (!isset($_SESSION)) {
         session_start();
     }
-    if (!ISSET($_SESSION['user'])) {
-        header("Location: login.php");
-    } else if (IS_NULL($_SESSION['user'])) {
+
+    if(!userIsLoggedIn()){
         header("Location: login.php");
     }
 }
 
-function gebruikerIsIngelogd(){
+function userIsLoggedIn(){
     if(ISSET($_SESSION['user'])){
         if(!IS_NULL($_SESSION['user'])){
             return true;
