@@ -38,3 +38,9 @@ function gebruikerIsIngelogd(){
     }
     return false;
 }
+
+function register_user() {
+
+
+
+}
