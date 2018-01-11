@@ -10,7 +10,7 @@ function getFilms($dbh, $filter, $order){
         $img = (!IS_NULL($row['cover_image']))?$row['cover_image']:"geen afbeelding";
 
         $html .= <<<Film
-        <a href="filmDetail.php?$id">
+        <a href="filmDetail.php?movie=$id">
             <div class="movie">
                 <div class="img-div">
                     <img src="img/$img" alt="$img"/>
