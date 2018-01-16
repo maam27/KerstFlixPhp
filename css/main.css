@@ -95,7 +95,7 @@ nav li li:hover {
 nav li ul {
     display: none;
     height: auto;
-    /*position: absolute;*/
+    position: absolute;
     width: auto;
 }
 
