@@ -25,8 +25,8 @@ require_once 'php/user-functions.php';
                 <?php
                 if(userIsLoggedIn()){
                     ?>
-                <li><a href="#"><?=$_SESSION['user']?></a>
-                    <ul>
+                <li><a href="#"><?=$_SESSION['user']?> ingelogd op <?=$_SESSION['login_date']?> sinds <?=$_SESSION['login_time']?></a>
+                    <ul class="right">
                         <li class="right"><a href="mijnaccount.php">Mijn account</a></li>
                         <li class="right"><a href="logout.php">Uitloggen</a></li>
                     </ul>

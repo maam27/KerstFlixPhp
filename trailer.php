@@ -23,9 +23,9 @@
         <source src="vid/Home-Alone.mp4" type="video/mp4">
     </video>
 </div>
-<footer>
-    &copy; KerstFlix Inc. 2017
-</footer>
+<?php
+include 'partial/footer.php'
+?>
 
 </body>
 </html>

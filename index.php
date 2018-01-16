@@ -27,9 +27,8 @@
 <br>
 <p>Om in te loggen of te registreren, klik rechtsbovenin op "Account". Om bij de films te komen, klik op "Films" in de
     navigatiebalk.</p>
-<footer>
-    &copy; KerstFlix Inc. 2017
-</footer>
-
+<?php
+include 'partial/footer.php'
+?>
 </body>
 </html>

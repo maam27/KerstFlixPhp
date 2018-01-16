@@ -63,6 +63,10 @@ nav > div {
     justify-content: space-between;
 }
 
+nav > div > div{
+    position: relative;
+}
+
 nav ul li {
     display: inline-block;
     font-size: 20px;
@@ -106,6 +110,10 @@ nav li li {
     background: silver;
 }
 
+nav li li.right:first-child{
+    margin-top:20px;
+}
+
 nav li:hover li a {
     background: none;
 }
@@ -117,8 +125,8 @@ nav li ul li:hover a {
 }
 
 nav .right {
-    position: relative;
-    left: -96px;
+    position: absolute;
+    right: 0;
 }
 
 /*//////////////////////////////
@@ -311,6 +319,10 @@ positioning and sizes
 //////////////////////////////*/
 .flex {
     display: flex;
+}
+
+.wrap{
+    flex-wrap: wrap;
 }
 
 .full-width {
