@@ -1,19 +1,15 @@
 <?php
 function login_user($dbh, $user, $pass){
-    //old login query
-    //$userName = $dbh->quote($user);
-    //$password = $dbh->quote($pass);
-    //$data = $dbh->query("SELECT user_name FROM Customer where customer_mail_address = {$userName} and password = {$password}");
-    //$result = $data->fetch();
-
-    $statement = $dbh->prepare("SELECT user_name FROM Customer where customer_mail_address = :name and password = :pass ");
+    $statement = $dbh->prepare("SELECT user_name, firstname, lastname FROM Customer where customer_mail_address = :name and password = :pass ");
     $statement->execute(array(  ':name' => $user,
                                 ':pass' => $pass));
     $result = $statement->fetch();
 
     if(!is_null($result)){
         if(!is_null($result['user_name'])){
-            $_SESSION['user'] = $result['user_name'];
+            $_SESSION['user'] = $result['firstname'] .' ' . $result['lastname'];
+            $_SESSION['login_time'] = date("H:i");
+            $_SESSION['login_date'] = date("d-m-Y");
             header("Location: index.php");
         }
     }

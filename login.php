@@ -65,7 +65,3 @@ login_fout;
         </footer>
     </body>
 </html>
-
-In de header verschijnt de naam van de ingelogde bezoeker, de weekdag, de datum en de
-inlogtijd in het Nederlands. Zoiets als "Peter Brouwmeester op zaterdag 24 mei, ingelogd sinds
-20:15 uur"

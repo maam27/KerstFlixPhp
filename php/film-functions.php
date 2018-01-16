@@ -33,12 +33,15 @@ Film;
 
 function get_all_film_genres($dbh){
     //query all genres linked to a movie
-    $statement = $dbh->prepare('select distinct genre_name as \'genre\' from movie join movie_genre on movie_genre.movie_id = movie.movie_id');
+    $statement = $dbh->prepare('select distinct 
+                                genre_name as \'genre\' 
+                                from movie 
+                                join movie_genre on movie_genre.movie_id = movie.movie_id');
     $statement->execute();
     $result = $statement->fetch();
+
     //put first one in a string
     $genres = $result['genre'];
-
     //add the remaining into the string
     while($row = $statement->fetch()){
         $genres .= ','.$row['genre'];
@@ -46,3 +49,37 @@ function get_all_film_genres($dbh){
     //convert to array
     return explode(',',$genres);
 }
+
+function get_all_film_publication_years($dbh){
+    //query all genres linked to a movie
+    $statement = $dbh->prepare('select distinct 
+                                publication_year as \'year\' 
+                                from movie');
+    $statement->execute();
+    $result = $statement->fetch();
+
+    //put first one in a string
+    $years = $result['year'];
+    //add the remaining into the string
+    while($row = $statement->fetch()){
+        $years .= ','.$row['year'];
+    }
+    //convert to array
+    return explode(',',$years);
+}
+
+function get_all_film_directors($dbh){
+    //query all genres linked to a movie
+    $statement = $dbh->prepare('select distinct 
+concat(person.firstname,\' \',Person.lastname) as \'director\',
+Person.person_id from Movie_Director 
+join Person on Movie_Director.person_id = Person.person_id
+');
+    $statement->execute();
+    $directors = array();
+    while($row = $statement->fetch()){
+        $directors[$row['person_id']] = $row['director'];
+    }
+    return $directors;
+}
+
