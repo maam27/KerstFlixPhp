@@ -3,6 +3,7 @@ function getFilms($dbh, $filter, $order){
     $html="";
     $query = "select distinct movie.title, movie.cover_image, movie.movie_id from movie
               full join Movie_Genre on Movie_Genre.movie_id = Movie.movie_id 
+              full join Movie_Director on movie.movie_id = Movie_Director.movie_id
               where 1=1 {$filter} 
               order by {$order}";
 

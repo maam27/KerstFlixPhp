@@ -34,7 +34,7 @@ include_once 'partial/nav.php';
                 <!--search bar-->
                 <div>
                     <?php
-                    $searchTerm;
+                    $searchTerm ="";
                     if(isset($_GET['search'])) {
                         if(!empty($_GET['search'])){
                             $searchTerm = $_GET['search'];
@@ -122,9 +122,14 @@ include_once 'partial/nav.php';
             if(isset($_GET['publication_year'])) {
                 if(!empty($_GET['publication_year'])){
                     $filter .= " and movie.publication_year = '" . $_GET['publication_year']."'";
-             }
+                }
             }
-
+            //filter publication year
+            if(isset($_GET['director'])) {
+                if(!empty($_GET['director'])){
+                    $filter .= " and movie_director.person_id = '" . $_GET['director']."'";
+                }
+            }
             $order = "movie.movie_id desc";
             echo getFilms($dbh,$filter,$order);
         ?>
