@@ -321,6 +321,10 @@ positioning and sizes
     display: flex;
 }
 
+.wrap{
+    flex-wrap: wrap;
+}
+
 .full-width {
     width: 100%;
 }

@@ -11,6 +11,7 @@
 <?php
     //load required functions
     require_once 'php/db-functions.php';
+    require_once 'php/film-functions.php';
     //open database connection
     $dbh = db_connect();
     session_start();
@@ -21,7 +22,7 @@
 
 
 <div class="movies">
-    <div style="width:100%;">
+    <div class="full-width">
         <h1>Filmoverzicht</h1>
         <p>If there's two big trees invariably sooner or later there's gonna be a little tree. These things happen
             automatically. All you have to do is just let them happen. You can create anything that makes you happy. Of
@@ -37,9 +38,18 @@
             home late; black and blue.</p>
     </div>
 
-    <h2 id="recent">Recent Toegevoegd</h2>
-    <div class="category">
-
+    <h2 class="full-width" id="recent">Recent Toegevoegd</h2>
+    <div class="category full-width">
+        <?= get_latest_films($dbh,5)?>
+    </div>
+    <h2 class="full-width" id="voor-het-gezin">Voor het Gezin</h2>
+    <div class="category full-width">
+        <?= get_latest_films($dbh,5,'action')?>
+    </div>
+    <h2 class="full-width" id="klassiekers">Klassiekers</h2>
+    <div class="category last full-width">
+        <?= get_latest_films($dbh,5,'Sci-Fi')?>
+        <!--
         <a href="home-alone.html">
             <div class="movie">
                 <div class="img-div">
@@ -50,7 +60,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div class="img-div">
@@ -61,7 +70,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div class="img-div">
@@ -73,7 +81,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div class="img-div">
@@ -84,7 +91,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div class="img-div">
@@ -95,10 +101,6 @@
                 </div>
             </div>
         </a>
-    </div>
-    <h2 id="voor-het-gezin">Voor het Gezin</h2>
-    <div class="category">
-
         <a href="home-alone.html">
             <div class="movie">
                 <div class="img-div">
@@ -109,7 +111,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div class="img-div">
@@ -120,7 +121,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div>
@@ -131,7 +131,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div>
@@ -142,7 +141,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div>
@@ -153,10 +151,6 @@
                 </div>
             </div>
         </a>
-    </div>
-    <h2 id="klassiekers">Klassiekers</h2>
-    <div class="category last">
-
         <a href="home-alone.html">
             <div class="movie">
                 <div>
@@ -167,7 +161,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div>
@@ -178,7 +171,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div>
@@ -190,7 +182,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div>
@@ -201,7 +192,6 @@
                 </div>
             </div>
         </a>
-
         <a href="home-alone.html">
             <div class="movie">
                 <div>
@@ -212,6 +202,7 @@
                 </div>
             </div>
         </a>
+        -->
     </div>
 
 </div>

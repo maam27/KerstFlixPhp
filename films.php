@@ -103,7 +103,7 @@ include_once 'partial/nav.php';
     </div>
 
     <!-- filmId, naam, img-->
-    <div class="flex" style="flex-wrap:wrap;">
+    <div class="flex wrap">
         <?php
             $filter="";
             //apply filters
