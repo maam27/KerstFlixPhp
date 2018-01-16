@@ -25,7 +25,7 @@
 <div class="movie-details">
     <div class="full-width flex">
         <div class="third-width">
-            <img src=<?="$img"?>>
+            <img src="img/<?=$img?>" alt="<?=$img?>">
         </div>
         <div class="two-third-width generic-information">
             <h1><?=$row["title"]?></h1>
