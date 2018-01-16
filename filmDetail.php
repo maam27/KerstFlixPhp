@@ -16,41 +16,38 @@
     session_start();
     //load navigation menu
     include_once 'partial/nav.php';
+    include_once 'php/film-functions.php';
+    $row = getMovieDetails($dbh, $_GET["movie"]);
+
+    $img = (!IS_NULL($row['cover_image']))?$row['cover_image']:"missing_image.png";
 ?>
 
 <div class="movie-details">
     <div class="full-width flex">
         <div class="third-width">
-            <img src="img/home_alone.jpg"/>
+            <img src=<?="$img"?>>
         </div>
         <div class="two-third-width generic-information">
-            <h1>Home Alone</h1>
-            <p><strong>Director:</strong> Chris Columbus</p>
-            <p><strong>Writer:</strong> John Hughes</p>
-            <p><strong>Genre</strong> Comedy, Family</p>
-            <p><strong>Speelduur:</strong> 1 uur en 43 minuten</p>
-            <p><strong>Jaar van uitgave:</strong> 1990</p>
-            <p><strong>Bekijk de <a href="trailer.html"><span class="highlight">trailer</span></a></strong></p>
+            <h1><?=$row["title"]?></h1>
+            <p><strong>Director: </strong><?php echo get_all_directors_of_movie($dbh, $_GET["movie"])?></p>
+            <p><strong>Genre: </strong><?php echo get_all_film_genres_of_movie($dbh, $_GET["movie"]);?></p>
+            <p><strong>Speelduur:</strong> <?=$row["duration"]?> minuten</p>
+            <p><strong>Jaar van uitgave:</strong><?=$row["publication_year"]?></p>
+            <p><strong>Bekijk de <a href="trailer.php"><span class="highlight">trailer</span></a></strong></p>
         </div>
     </div>
     <div class="full-width">
         <div class="full-width">
             <p><strong>Beschrijving:</strong></p>
-            <p>It is Christmas time and the McCallister family is preparing for a vacation in Paris, France. But the
-                youngest in the family named Kevin got into a scuffle with his older brother Buzz and was sent to his
-                room which is on the third floor of his house. Then, the next morning, while the rest of the family was
-                in a rush to make it to the airport on time, they completely forgot about Kevin who now has the house
-                all to himself. Being home alone was fun for Kevin, having a pizza all to himself, jumping on his
-                parents' bed, and making a mess. Then, Kevin discovers about two burglars, Harry and Marv, about to rob
-                his house on Christmas Eve. Kevin acts quickly by wiring his own house with makeshift booby traps to
-                stop the burglars and to bring them to justice.</p>
+            <p><?=$row["description"]?></p>
         </div>
         <div class="full-width space-top">
-            <strong>Cast</strong>
+            <strong>Cast: <?php echo get_cast_of_movie($dbh, $_GET["movie"])?></strong>
+            <br>
             <table class="full-width">
                 <tr>
-                    <td>Macaulay Culkin</td>
-                    <td>Kevin McCallister</td>
+                    <td><strong>Name</strong></td>
+                    <td><strong>Role</strong></td>
                 </tr>
                 <tr>
                     <td>Joe Pesci</td>
