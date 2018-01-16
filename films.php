@@ -30,7 +30,7 @@ include_once 'partial/nav.php';
         <!--form voor filter opties-->
         <form name="filter" action="#" method="get">
             <div class="flex">
-                <p>filters</p>
+                <p>filters</p><br>
                 <!--search bar-->
                 <div>
                     <?php
@@ -46,7 +46,7 @@ include_once 'partial/nav.php';
                 <!--Genre filter-->
                 <div>
                     <select name="genre">
-                        <option value="">alle</option>
+                        <option value="">alle genres</option>
                             <?php
                             foreach(get_all_film_genres($dbh) as $genre){
                                 //autoselect the currently selected in the dropdown
@@ -64,7 +64,7 @@ include_once 'partial/nav.php';
                 <!--Year filter-->
                 <div>
                     <select name="publication_year">
-                        <option value="">alle</option>
+                        <option value="">sinds het begin der tijden</option>
                         <?php
                         foreach(get_all_film_publication_years($dbh) as $year){
                             //autoselect the currently selected in the dropdown
@@ -82,7 +82,7 @@ include_once 'partial/nav.php';
                 <!--director filter-->
                 <div>
                     <select name="director">
-                        <option value="">alle</option>
+                        <option value="">alle directors</option>
                         <?php
                         foreach(get_all_film_directors($dbh) as $id => $director){
                             //autoselect the currently selected in the dropdown
@@ -134,11 +134,10 @@ include_once 'partial/nav.php';
             echo getFilms($dbh,$filter,$order);
         ?>
     </div>
-
-
 </div>
-<footer>
-    &copy; KerstFlix Inc. 2017
-</footer>
+
+<?php
+include 'partial/footer.php'
+?>
 </body>
 </html>

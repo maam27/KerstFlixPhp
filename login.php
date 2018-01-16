@@ -60,8 +60,8 @@ login_fout;
                 </form>
             </div>
         </div>
-        <footer>
-            &copy; KerstFlix Inc. 2017
-        </footer>
+        <?php
+        include 'partial/footer.php'
+        ?>
     </body>
 </html>
