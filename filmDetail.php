@@ -22,6 +22,7 @@
     require_Login();
 
     $row = getMovieDetails($dbh, $_GET["movie"]);
+
     $img = (!IS_NULL($row['cover_image']))?$row['cover_image']:"missing_image.png";
 ?>
 
@@ -45,7 +46,7 @@
             <p><?=$row["description"]?></p>
         </div>
         <div class="full-width space-top">
-            <strong>Cast: <?php echo get_cast_of_movie($dbh, $_GET["movie"])?></strong>
+            <strong>Cast: </strong><br>
             <br>
             <table class="full-width">
                 <tr>
@@ -53,21 +54,10 @@
                     <td><strong>Role</strong></td>
                 </tr>
                 <tr>
-                    <td>Joe Pesci</td>
-                    <td>Harry Lime</td>
+                    <td><?php echo get_cast_of_movie($dbh, $_GET["movie"])?></td>
+                    <td><?php echo get_roles_of_cast($dbh, $_GET["movie"])?></td>
                 </tr>
-                <tr>
-                    <td>Daniel Stern</td>
-                    <td>Marv Merchants</td>
-                </tr>
-                <tr>
-                    <td>John Heard</td>
-                    <td>Peter McCallister</td>
-                </tr>
-                <tr>
-                    <td>Roberts Blossom</td>
-                    <td>Old Man Marley</td>
-                </tr>
+
             </table>
         </div>
     </div>

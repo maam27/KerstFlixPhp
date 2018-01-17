@@ -119,7 +119,7 @@ Film;
 }
 
 function getMovieDetails($dbh, $movieID){
-    $query = "select movie.title, movie.duration, movie.description, movie.publication_year, movie.cover_image, movie_genre.genre_name
+    $query = "select movie.title, movie.duration, movie.description, movie.publication_year, movie.cover_image, movie_genre.genre_name, movie.url
               from movie LEFT JOIN movie_genre on movie.movie_id = movie_genre.movie_id
               where movie.movie_id=$movieID";
 
@@ -168,17 +168,36 @@ function get_cast_of_movie($dbh, $movieID){
     //query all genres linked to a movie
     $statement = $dbh->prepare("SELECT CONCAT(Person.firstname,' ', Person.lastname) AS [name], [role] FROM Person 
                               join Movie_Cast on Person.person_id = Movie_Cast.person_id
-                              where movie_id =$movieID");
+                              where movie_id =$movieID
+                              order by Person.firstname ASC");
     $statement->execute();
     $result = $statement->fetch();
     //put first one in a string
     $cast = $result['name'];
     //add the remaining into the string
     while($row = $statement->fetch()){
-        $cast.= ', '.$row['name'];
+        $cast.= '<br>'.$row['name'];
     }
     //convert to array
     return $cast;
+}
+
+function get_roles_of_cast($dbh, $movieID){
+    //query all genres linked to a movie
+    $statement = $dbh->prepare("SELECT role FROM Person 
+                              join Movie_Cast on Person.person_id = Movie_Cast.person_id
+                              where movie_id =$movieID
+                              order by Person.firstname ASC");
+    $statement->execute();
+    $result = $statement->fetch();
+    //put first one in a string
+    $role = $result['role'];
+    //add the remaining into the string
+    while($row = $statement->fetch()){
+        $role.= '<br>'.$row['role'];
+    }
+    //convert to array
+    return $role;
 }
 
 function get_trailer_of_movie($dbh, $movieID){
