@@ -33,7 +33,7 @@
             <p><strong>Genre: </strong><?php echo get_all_film_genres_of_movie($dbh, $_GET["movie"]);?></p>
             <p><strong>Speelduur:</strong> <?=$row["duration"]?> minuten</p>
             <p><strong>Jaar van uitgave:</strong><?=$row["publication_year"]?></p>
-            <p><strong>Bekijk de <a href="trailer.php"><span class="highlight">trailer</span></a></strong></p>
+            <p><strong>Bekijk de <a src="<?=$row["url"]?>" ><span class="highlight">trailer</span></a></strong></p>
         </div>
     </div>
     <div class="full-width">
@@ -42,7 +42,7 @@
             <p><?=$row["description"]?></p>
         </div>
         <div class="full-width space-top">
-            <strong>Cast: <?php echo get_cast_of_movie($dbh, $_GET["movie"])?></strong>
+            <strong>Cast: </strong><br>
             <br>
             <table class="full-width">
                 <tr>
@@ -50,21 +50,10 @@
                     <td><strong>Role</strong></td>
                 </tr>
                 <tr>
-                    <td>Joe Pesci</td>
-                    <td>Harry Lime</td>
+                    <td><?php echo get_cast_of_movie($dbh, $_GET["movie"])?></td>
+                    <td><?php echo get_roles_of_cast($dbh, $_GET["movie"])?></td>
                 </tr>
-                <tr>
-                    <td>Daniel Stern</td>
-                    <td>Marv Merchants</td>
-                </tr>
-                <tr>
-                    <td>John Heard</td>
-                    <td>Peter McCallister</td>
-                </tr>
-                <tr>
-                    <td>Roberts Blossom</td>
-                    <td>Old Man Marley</td>
-                </tr>
+
             </table>
         </div>
     </div>
