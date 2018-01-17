@@ -12,9 +12,12 @@
     //load required functions
     require_once 'php/db-functions.php';
     require_once 'php/film-functions.php';
+    require_once 'php/user-functions.php';
     //open database connection
     $dbh = db_connect();
     session_start();
+    //require login
+    require_Login();
     //load navigation menu
     include_once 'partial/nav.php';
 ?>
@@ -42,11 +45,11 @@
     <div class="category full-width">
         <?= get_latest_films($dbh,5)?>
     </div>
-    <h2 class="full-width" id="voor-het-gezin">Voor het Gezin</h2>
+    <h2 class="full-width" id="Action">Action</h2>
     <div class="category full-width">
         <?= get_latest_films($dbh,5,'action')?>
     </div>
-    <h2 class="full-width" id="klassiekers">Klassiekers</h2>
+    <h2 class="full-width" id="Sci-Fi">Sci-Fi</h2>
     <div class="category last full-width">
         <?= get_latest_films($dbh,5,'Sci-Fi')?>
         <!--

@@ -17,7 +17,7 @@ require_once 'php/user-functions.php';
 $dbh = db_connect();
 session_start();
 
-requireLogin();
+require_Login();
 
 //load navigation menu
 include_once 'partial/nav.php';
@@ -109,25 +109,25 @@ include_once 'partial/nav.php';
             //apply filters
             if(isset($_GET['search'])) {
                 if(!empty($_GET['search'])){
-                    $filter .= " and movie.[title] like '%" . $_GET['search']."%'";
+                    $filter .= " and movie.[title] like " . $dbh->quote("%".$_GET['search']."%")."";
                 }
             }
             //filter genre
             if(isset($_GET['genre'])) {
                 if(!empty($_GET['genre'])){
-                    $filter .= " and movie_genre.genre_name = '" . $_GET['genre']."'";
+                    $filter .= " and movie_genre.genre_name = " . $dbh->quote($_GET['genre']);
                 }
             }
             //filter publication year
             if(isset($_GET['publication_year'])) {
                 if(!empty($_GET['publication_year'])){
-                    $filter .= " and movie.publication_year = '" . $_GET['publication_year']."'";
+                    $filter .= " and movie.publication_year = " . $dbh->quote($_GET['publication_year']);
                 }
             }
             //filter publication year
             if(isset($_GET['director'])) {
                 if(!empty($_GET['director'])){
-                    $filter .= " and movie_director.person_id = '" . $_GET['director']."'";
+                    $filter .= " and movie_director.person_id = " . $dbh->quote($_GET['director']);
                 }
             }
             $order = "movie.movie_id desc";

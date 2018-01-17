@@ -17,8 +17,11 @@
     //load navigation menu
     include_once 'partial/nav.php';
     include_once 'php/film-functions.php';
-    $row = getMovieDetails($dbh, $_GET["movie"]);
+    include_once 'php/user-functions.php';
 
+    require_Login();
+
+    $row = getMovieDetails($dbh, $_GET["movie"]);
     $img = (!IS_NULL($row['cover_image']))?$row['cover_image']:"missing_image.png";
 ?>
 
@@ -33,7 +36,7 @@
             <p><strong>Genre: </strong><?php echo get_all_film_genres_of_movie($dbh, $_GET["movie"]);?></p>
             <p><strong>Speelduur:</strong> <?=$row["duration"]?> minuten</p>
             <p><strong>Jaar van uitgave:</strong><?=$row["publication_year"]?></p>
-            <p><strong>Bekijk de <a href="trailer.php"><span class="highlight">trailer</span></a></strong></p>
+            <p><strong>Bekijk de <a href="trailer.php?movie=<?=$_GET["movie"]?>"><span class="highlight">trailer</span></a></strong></p>
         </div>
     </div>
     <div class="full-width">

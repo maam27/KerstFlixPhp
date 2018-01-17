@@ -15,23 +15,27 @@ function login_user($dbh, $user, $pass){
     }
 }
 
-function requireLogin(){
+function require_Login(){
     if (!isset($_SESSION)) {
         session_start();
     }
 
-    if(!userIsLoggedIn()){
-        header("Location: login.php");
+    if(!user_is_logged_in()){
+        redirect("login.php");
     }
 }
 
-function userIsLoggedIn(){
+function user_is_logged_in(){
     if(ISSET($_SESSION['user'])){
         if(!IS_NULL($_SESSION['user'])){
             return true;
         }
     }
     return false;
+}
+
+function redirect($location){
+    header("Location: ".$location);
 }
 
 function register_user() {

@@ -16,7 +16,7 @@
     $dbh = db_connect();
     session_start();
     //check if the user is logged in, if not redirect to the login page
-    requireLogin();
+    require_Login();
     //load navigation menu
     include_once 'partial/nav.php';
 ?>

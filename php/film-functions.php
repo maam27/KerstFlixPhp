@@ -71,11 +71,11 @@ function get_all_film_publication_years($dbh){
 
 function get_all_film_directors($dbh){
     //query all genres linked to a movie
-    $statement = $dbh->prepare('select distinct 
-concat(person.firstname,\' \',Person.lastname) as \'director\',
+    $statement = $dbh->prepare("select distinct 
+concat(person.firstname,' ',Person.lastname) as 'director',
 Person.person_id from Movie_Director 
 join Person on Movie_Director.person_id = Person.person_id
-');
+");
     $statement->execute();
     $directors = array();
     while($row = $statement->fetch()){
@@ -89,7 +89,7 @@ function get_latest_films($dbh, $amount, $genre = ""){
     $query = "select distinct top ".$amount." movie.title, movie.cover_image, movie.movie_id from movie
               full join Movie_Genre on Movie_Genre.movie_id = Movie.movie_id ";
     if($genre != ""){
-        $query .= " where movie_genre.genre_name = '".$genre."'";
+        $query .= " where movie_genre.genre_name = ".$dbh->quote($genre);
     }
     $query .= " order by movie.movie_id desc";
 
@@ -117,8 +117,6 @@ Film;
     }
     return $html;
 }
-
-
 
 function getMovieDetails($dbh, $movieID){
     $query = "select movie.title, movie.duration, movie.description, movie.publication_year, movie.cover_image, movie_genre.genre_name
@@ -181,4 +179,12 @@ function get_cast_of_movie($dbh, $movieID){
     }
     //convert to array
     return $cast;
+}
+
+function get_trailer_of_movie($dbh, $movieID){
+    $statement = $dbh->prepare("SELECT url FROM movie                              
+                              where movie_id = :movieId");
+    $statement->execute(array(':movieId' => $movieID));
+    $result = $statement->fetch();
+    return $result['url'];
 }

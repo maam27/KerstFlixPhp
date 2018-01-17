@@ -9,13 +9,6 @@
     </head>
     <body>
         <?php
-        //remove before done
-        echo 'debug user info <br>';
-        echo 'a.nunc@seddolor.com <br>';
-        echo 'In<br>';
-        ?>
-
-        <?php
         //load required functions
         require_once 'php/db-functions.php';
         require_once 'php/user-functions.php';
@@ -28,13 +21,10 @@
 
         <?php
             //redirect naar profiel pagina als ingelogd
-            if(ISSET($_SESSION['user'])){
-                if(!IS_NULL($_SESSION['user'])){
-                    header("Location: index.php");
-                }
+            if(user_is_logged_in()){
+                redirect('index.php');
             }
         ?>
-
 
         <div class="login">
              <div>
@@ -52,10 +42,10 @@ login_fout;
                     $username = $_POST['username'];
                 };
                 ?>
-
+<h1>Login</h1>
                 <form method="Post" action="">
                     <input id="username" name="username" type="mail"        placeholder="E-mail"    required    value="<?=$username?>">
-                    <input id="password" name="password" type="password"    placeholder="password"  required>
+                    <input id="password" name="password" type="password"    placeholder="Wachtwoord"  required>
                     <button>login</button>
                 </form>
             </div>

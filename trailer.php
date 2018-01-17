@@ -11,17 +11,23 @@
 <?php
     //load required functions
     require_once 'php/db-functions.php';
+    include_once 'php/user-functions.php';
+    include_once 'php/film-functions.php';
     //open database connection
     $dbh = db_connect();
     session_start();
+    require_Login();
+
     //load navigation menu
     include_once 'partial/nav.php';
 ?>
 
 <div class="Trailer-Flex">
-    <video controls>
-        <source src="vid/Home-Alone.mp4" type="video/mp4">
-    </video>
+    <?php
+    $source = get_trailer_of_movie($dbh,$_GET['movie']);
+    $source = preg_replace('/.*watch\?v=/','',$source);
+    ?>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/<?=$source?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 <?php
 include 'partial/footer.php'
