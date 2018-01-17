@@ -12,6 +12,7 @@
     //load required functions
     require_once 'php/db-functions.php';
     require_once 'php/user-functions.php';
+    require_once 'php/general-functions.php';
     //open database connection
     $dbh = db_connect();
     session_start();
@@ -41,7 +42,7 @@
                 </div>
                 <div class="full-width plan">
                     <label for="basic-plan">Selecteer Basis</label>
-                    <input id="basic-plan" type="radio" name="plan" value="Basic"/>
+                    <input id="basic-plan" type="radio" name="plan" value="Basic" <?=($_POST['plan']== 'Basic')?'checked':''?>/>
                 </div>
             </div>
         </div>
@@ -61,7 +62,7 @@
                 </div>
                 <div class="full-width plan">
                     <label for="normal-plan">Selecteer normaal</label>
-                    <input id="normal-plan" type="radio" name="plan" value="Standaard"/>
+                    <input id="normal-plan" type="radio" name="plan" value="Standaard" <?=($_POST['plan']== 'Standaard')?'checked':''?>/>
                 </div>
             </div>
         </div>
@@ -81,7 +82,7 @@
                 </div>
                 <div class="full-width plan">
                     <label for="premium-plan">Selecteer premium</label>
-                    <input id="premium-plan" type="radio" name="plan" value="Premium"/>
+                    <input id="premium-plan" type="radio" name="plan" value="Premium" <?=($_POST['plan']== 'Premium')?'checked':''?>/>
                 </div>
             </div>
         </div>
@@ -94,7 +95,7 @@
                     <label for="email">E-mail</label>
                 </td>
                 <td>
-                    <input id="email" type="email" name="email">
+                    <input id="email" type="email" name="email" value="<?=if_set('email','post')?>">
                 </td>
             </tr>
             <tr>
@@ -102,7 +103,7 @@
                     <label for="voornaam">Voornaam</label>
                 </td>
                 <td>
-                    <input id="voornaam" type="text" name="voornaam">
+                    <input id="voornaam" type="text" name="voornaam" value="<?=if_set('voornaam','post')?>">
                 </td>
             </tr>
             <tr>
@@ -110,7 +111,7 @@
                     <label for="achternaam">Achternaam</label>
                 </td>
                 <td>
-                    <input id="achternaam" type="text" name="achternaam">
+                    <input id="achternaam" type="text" name="achternaam" value="<?=if_set('achternaam','post')?>">
                 </td>
             </tr>
             <tr>
@@ -118,7 +119,7 @@
                     <label for="username">Gebruikers naam</label>
                 </td>
                 <td>
-                    <input id="username" type="text" name="username">
+                    <input id="username" type="text" name="username" value="<?=if_set('username','post')?>">
                 </td>
             </tr>
             <tr>
@@ -126,7 +127,7 @@
                     <label for="password">Wachtwoord</label>
                 </td>
                 <td>
-                    <input id="password" type="password" name="password">
+                    <input id="password" type="password" name="password" pattern="">
                 </td>
             </tr>
             <tr>
@@ -152,7 +153,7 @@
                     <label for="cardnumber">Kaart nummer</label>
                 </td>
                 <td>
-                    <input id="cardnumber" type="number" name="cardnumber">
+                    <input id="cardnumber" type="number" name="cardnumber" value="<?=if_set('cardnumber','post')?>">
                 </td>
             </tr>
             <tr>
@@ -171,8 +172,8 @@
                 </td>
                 <td>
                     <select id="gender" name="gender">
-                        <option value="M">Man</option>
-                        <option value="F">Vrouw</option>
+                        <option value="M" <?=($_POST['gender']== 'M')?'selected':''?>>Man</option>
+                        <option value="F" <?=($_POST['gender']== 'F')?'selected':''?>>Vrouw</option>
                     </select>
                 </td>
             </tr>
@@ -181,7 +182,7 @@
                     <label for="birthdate">Geboorte datum</label>
                 </td>
                 <td>
-                    <input id="birthdate" type="date" name="birthdate">
+                    <input id="birthdate" type="date" name="birthdate"  value="<?=if_set('birthdate','post')?>">
                 </td>
             </tr>
             <tr>

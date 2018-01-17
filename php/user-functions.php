@@ -34,10 +34,6 @@ function user_is_logged_in(){
     return false;
 }
 
-function redirect($location){
-    header("Location: ".$location);
-}
-
 function register_user() {
 
 

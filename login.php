@@ -12,6 +12,7 @@
         //load required functions
         require_once 'php/db-functions.php';
         require_once 'php/user-functions.php';
+        require_once 'php/general-functions.php';
         //open database connection
         $dbh = db_connect();
         session_start();
@@ -44,7 +45,7 @@ login_fout;
                 ?>
 <h1>Login</h1>
                 <form method="Post" action="">
-                    <input id="username" name="username" type="mail"        placeholder="E-mail"    required    value="<?=$username?>">
+                    <input id="username" name="username" type="mail"        placeholder="E-mail"    required    value="<?=if_set('username','post')?>">
                     <input id="password" name="password" type="password"    placeholder="Wachtwoord"  required>
                     <button>login</button>
                 </form>
