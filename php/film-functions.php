@@ -119,7 +119,7 @@ Film;
 }
 
 function getMovieDetails($dbh, $movieID){
-    $query = "select movie.title, movie.duration, movie.description, movie.publication_year, movie.cover_image, movie_genre.genre_name, movie.url
+    $query = "select movie.title, movie.duration, movie.description, movie.publication_year, movie.cover_image, movie_genre.genre_name
               from movie LEFT JOIN movie_genre on movie.movie_id = movie_genre.movie_id
               where movie.movie_id=$movieID";
 
@@ -181,7 +181,6 @@ function get_cast_of_movie($dbh, $movieID){
     //convert to array
     return $cast;
 }
-
 function get_roles_of_cast($dbh, $movieID){
     //query all genres linked to a movie
     $statement = $dbh->prepare("SELECT role FROM Person 
