@@ -30,7 +30,7 @@ include_once 'partial/nav.php';
         <!--form voor filter opties-->
         <form name="filter" action="#" method="get">
             <div class="flex">
-                <p>filters</p><br>
+                <p>zoeken &nbsp;</p><br>
                 <!--search bar-->
                 <div>
                     <?php
