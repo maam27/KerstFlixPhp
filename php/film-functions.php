@@ -121,27 +121,27 @@ Film;
 function getMovieDetails($dbh, $movieID){
     $query = "select movie.title, movie.duration, movie.description, movie.publication_year, movie.cover_image, movie_genre.genre_name
               from movie LEFT JOIN movie_genre on movie.movie_id = movie_genre.movie_id
-              where movie.movie_id=$movieID";
+              where movie.movie_id=:movieId";
 
     //echo $query; //debug the query
 
     $statement = $dbh->prepare($query);
-    $statement->execute();
+    $statement->execute(array(':movieId' => $movieID));
     $result = $statement -> fetch();
     return $result;
 }
 
 function get_all_film_genres_of_movie($dbh, $movieID){
     //query all genres linked to a movie
-    $statement = $dbh->prepare("select distinct genre_name FROM movie_genre where movie_id=$movieID");
-    $statement->execute();
+    $statement = $dbh->prepare("select distinct genre_name FROM movie_genre where movie_id=:movieId");
+    $statement->execute(array(':movieId' => $movieID));
     $result = $statement->fetch();
     //put first one in a string
     $genres = $result['genre_name'];
 
     //add the remaining into the string
     while($row = $statement->fetch()){
-        $genres .= ','.$row['genre_name'];
+        $genres .= ', '.$row['genre_name'];
     }
     //convert to array
     return $genres;
@@ -151,8 +151,8 @@ function get_all_directors_of_movie($dbh, $movieID){
     //query all genres linked to a movie
     $statement = $dbh->prepare("SELECT CONCAT(firstname,' ', lastname) AS naam from Person 
 						   join Movie_Director on Person.person_id = Movie_Director.person_id
-						   where movie_id =$movieID");
-    $statement->execute();
+						   where movie_id =:movieId");
+    $statement->execute(array(':movieId' => $movieID));
     $result = $statement->fetch();
     //put first one in a string
     $directors = $result['naam'];
@@ -168,9 +168,9 @@ function get_cast_of_movie($dbh, $movieID){
     //query all genres linked to a movie
     $statement = $dbh->prepare("SELECT CONCAT(Person.firstname,' ', Person.lastname) AS [name], [role] FROM Person 
                               join Movie_Cast on Person.person_id = Movie_Cast.person_id
-                              where movie_id =$movieID
+                              where movie_id =:movieId
                               order by Person.firstname ASC");
-    $statement->execute();
+    $statement->execute(array(':movieId' => $movieID));
     $result = $statement->fetch();
     //put first one in a string
     $cast = $result['name'];
@@ -185,9 +185,9 @@ function get_roles_of_cast($dbh, $movieID){
     //query all genres linked to a movie
     $statement = $dbh->prepare("SELECT role FROM Person 
                               join Movie_Cast on Person.person_id = Movie_Cast.person_id
-                              where movie_id =$movieID
+                              where movie_id =:movieId
                               order by Person.firstname ASC");
-    $statement->execute();
+    $statement->execute(array(':movieId' => $movieID));
     $result = $statement->fetch();
     //put first one in a string
     $role = $result['role'];

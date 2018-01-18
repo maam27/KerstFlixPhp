@@ -49,6 +49,7 @@ login_fout;
                     <input id="password" name="password" type="password"    placeholder="Wachtwoord"  required>
                     <button>login</button>
                 </form>
+                 <p>Heeft u nog geen account klik <a class="no-margin" href="abonnementen.php">hier</a> om naar registratie te gaan</p>
             </div>
         </div>
         <?php

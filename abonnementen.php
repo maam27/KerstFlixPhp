@@ -25,8 +25,6 @@
     include_once 'partial/nav.php';
 ?>
 
-
-
 <?php
 //controleer of alles is ingevuld
 $melding = '';
@@ -163,7 +161,7 @@ else{
                     <label for="password">Wachtwoord</label>
                 </td>
                 <td>
-                    <input id="password" type="password" name="password" pattern="([\w!@#$%^&*()_=+]){8,20}" title="Het wachtwoord moet bestaan uit 8 tot 20 letters, cijfers of speciale tekens. de volgende tekens zijn toegestaan: !@#$%^&*()_=+">
+                    <input id="password" type="password" name="password" pattern="([\w!@#$%^&*()_=+]){8,20}" title="Het wachtwoord moet bestaan uit 8 tot 20 letters, cijfers of speciale tekens. de volgende speciale tekens zijn toegestaan: !@#$%^&*()_=+">
                 </td>
             </tr>
             <tr>
@@ -171,7 +169,7 @@ else{
                     <label for="password2">Wachtwoord opnieuw</label>
                 </td>
                 <td>
-                    <input id="password2" type="password" name="password2" pattern="([\w!@#$%^&*()_=+]){8,20}" title="Het wachtwoord moet bestaan uit 8 tot 20 letters, cijfers of speciale tekens. de volgende tekens zijn toegestaan: !@#$%^&*()_=+">
+                    <input id="password2" type="password" name="password2" pattern="([\w!@#$%^&*()_=+]){8,20}" title="Het wachtwoord moet bestaan uit 8 tot 20 letters, cijfers of speciale tekens. de volgende speciale tekens zijn toegestaan: !@#$%^&*()_=+">
                 </td>
             </tr>
             <tr>
