@@ -64,5 +64,23 @@ function register_user($dbh, $plan, $email, $voornaam, $achternaam, $username, $
     } catch (PDOException $e) {
         echo $e;
     }
-
 }
+
+function username_exists($dbh, $username){
+    $statement = $dbh->prepare("SELECT user_name FROM Customer where user_name = :name");
+    $statement->execute(array(':name' => $username));
+    $result = $statement->fetch();
+    if(isset($result['user_name']))
+        return true;
+    return false;
+}
+
+function email_exists($dbh, $email){
+    $statement = $dbh->prepare("SELECT user_name FROM Customer where customer_mail_address = :mail");
+    $statement->execute(array(':mail' => $email));
+    $result = $statement->fetch();
+    if(isset($result['user_name']))
+        return true;
+    return false;
+}
+

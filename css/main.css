@@ -80,6 +80,10 @@ li:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
+nav li:hover.no-hover{
+    background-color: rgb(45, 45, 45);
+}
+
 nav > ul > li > ul {
     visibility: hidden;
 }
@@ -196,6 +200,12 @@ movie
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.filter{
+    justify-content:space-between;
+
+
 }
 
 /*//////////////////////////////

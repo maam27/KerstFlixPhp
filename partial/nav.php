@@ -35,7 +35,8 @@ require_once 'php/user-functions.php';
                 }
                 else
                 { ?>
-                    <li><a href="abonnementen.php">Registreer</a></li><span class="white">/</span>
+                    <li><a href="abonnementen.php">Registreer</a></li>
+                    <li class="white no-hover">/</li>
                     <li><a href="login.php">Inloggen</a></li>
                 <?php
                 }

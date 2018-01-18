@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>Abonnementen</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+    <?php
+        include 'partial/include-css.php';
+    ?>
 </head>
 <body>
 <?php
@@ -20,7 +20,6 @@
     if(user_is_logged_in()){
         redirect('index.php');
     }
-
     //load navigation menu
     include_once 'partial/nav.php';
 ?>
@@ -45,7 +44,14 @@ if(!empty($_POST['plan']) and !empty($_POST['email']) and !empty($_POST['voornaa
            login_user($dbh, $_POST['email'], $_POST['password']);
        }
        else{
-           $melding = 'Er ging iets mis tijdens het registreren';
+           if(email_exists($dbh,$_POST['email'])){
+               $melding .=  'Het opgegeven email adres heeft al een account';
+           }
+           else if(username_exists($dbh,$_POST['username'])){
+               $melding .=  'De opgegeven gebruikers naam bestaat al';
+           }else{
+               $melding .= 'Er ging iets mis tijdens het registreren';
+           }
        }
     }
     else{

@@ -3,9 +3,9 @@
         <head>
         <meta charset="utf-8">
         <title>Welkom bij KerstFlix!</title>
-        <link rel="stylesheet" href="css/normalize.css">
-        <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
-        <link rel="stylesheet" href="css/main.css">
+            <?php
+            include 'partial/include-css.php';
+            ?>
     </head>
     <body>
         <?php
@@ -44,8 +44,8 @@ login_fout;
                 };
                 ?>
 <h1>Login</h1>
-                <form method="Post" action="">
-                    <input id="username" name="username" type="mail"        placeholder="E-mail"    required    value="<?=if_set('username','post')?>">
+                <form method="Post" action="#">
+                    <input id="username" name="username" type="email"        placeholder="E-mail"    required    value="<?=if_set('username','post')?>">
                     <input id="password" name="password" type="password"    placeholder="Wachtwoord"  required>
                     <button>login</button>
                 </form>
