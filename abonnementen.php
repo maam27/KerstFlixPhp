@@ -29,7 +29,7 @@
 
 <?php
 //controleer of alles is ingevuld
-$melding;
+$melding = '';
 if(!empty($_POST['plan']) and !empty($_POST['email']) and !empty($_POST['voornaam']) and !empty($_POST['achternaam']) and !empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST['password2']) and !empty($_POST['paymentmethod']) and !empty($_POST['cardnumber']) and !empty($_POST['country']) and !empty($_POST['gender']) and !empty($_POST['birthdate'])){
     if($_POST['password'] == $_POST['password2']){
        if(register_user($dbh,
@@ -55,7 +55,9 @@ if(!empty($_POST['plan']) and !empty($_POST['email']) and !empty($_POST['voornaa
     }
 }
 else{
+    if(isset($_POST['submit'])){
     $melding = 'u heeft niet een of meerdere velden niet ingevuld';
+    }
 }
 ?>
 <p class="error-message"><?=$melding?></p>
@@ -95,7 +97,7 @@ else{
                         watching - watching all the little creatures in nature.</p>
                 </div>
                 <div class="full-width plan">
-                    <label for="normal-plan">Selecteer normaal</label>
+                    <label for="normal-plan">Selecteer Pro</label>
                     <input id="normal-plan" type="radio" name="plan" value="Pro" <?=(if_set('plan','post')== 'Pro')?'checked':''?>/>
                 </div>
             </div>
@@ -222,7 +224,7 @@ else{
             <tr>
                 <td></td>
                 <td class="align-right">
-                    <button>registreer</button>
+                    <button name="submit">registreer</button>
                 </td>
             </tr>
         </table>
