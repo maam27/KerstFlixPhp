@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Overzicht</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+    <?php
+    include 'partial/include-css.php';
+    ?>
 </head>
 <body>
 <?php
@@ -31,6 +31,7 @@ include_once 'partial/nav.php';
         <form name="filter" action="#" method="get">
             <div class="flex">
                 <p>zoeken &nbsp;</p><br>
+            <div class="flex filter">
                 <!--search bar-->
                 <div>
                     <?php
@@ -97,19 +98,24 @@ include_once 'partial/nav.php';
                         ?>
                     </select>
                 </div>
-                <button>filter</button>
+                <div>
+                <button class="no-margin">filter</button>
+                </div>
             </div>
        </form>
+
     </div>
 
     <!-- filmId, naam, img-->
-    <div class="flex wrap">
+    <div class="flex wrap margin-top">
         <?php
+            $filterText="";
             $filter="";
             //apply filters
             if(isset($_GET['search'])) {
                 if(!empty($_GET['search'])){
                     $filter .= " and movie.[title] like " . $dbh->quote("%".$_GET['search']."%")."";
+                    $filterText .= ' met de naam "'.$_GET['search'].'"';
                 }
             }
             //filter genre
@@ -131,6 +137,12 @@ include_once 'partial/nav.php';
                 }
             }
             $order = "movie.movie_id desc";
+            echo '<div class="full-width margin-bottom"><p> Beschikbare films';
+            if(!empty($filterText)){
+                echo $filterText;
+            }
+            echo':</p></div>';
+
             echo getFilms($dbh,$filter,$order);
         ?>
     </div>

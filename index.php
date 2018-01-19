@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>Welkom bij KerstFlix!</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
+    <?php
+    include 'partial/include-css.php';
+    ?>
 </head>
 <body>
 <?php
