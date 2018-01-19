@@ -11,8 +11,8 @@
 <?php
     //load required functions
     require_once 'php/db-functions.php';
-    include_once 'php/user-functions.php';
-    include_once 'php/film-functions.php';
+    require_once 'php/user-functions.php';
+    require_once 'php/film-functions.php';
     //open database connection
     $dbh = db_connect();
     session_start();

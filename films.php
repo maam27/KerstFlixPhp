@@ -30,76 +30,76 @@ include_once 'partial/nav.php';
         <!--form voor filter opties-->
         <form name="filter" action="#" method="get">
             <div class="flex">
-                <p>zoeken &nbsp;</p><br>
-            <div class="flex filter">
-                <!--search bar-->
-                <div>
-                    <?php
-                    $searchTerm ="";
-                    if(isset($_GET['search'])) {
-                        if(!empty($_GET['search'])){
-                            $searchTerm = $_GET['search'];
+                <div class="flex filter full-width">
+                    <!--search bar-->
+                    <div>
+                        <?php
+                        $searchTerm ="";
+                        if(isset($_GET['search'])) {
+                            if(!empty($_GET['search'])){
+                                $searchTerm = $_GET['search'];
+                            }
                         }
-                    }
-                    ?>
-                    <input name="search" type="text" placeholder="zoek op film naam" value="<?=$searchTerm?>">
-                </div>
-                <!--Genre filter-->
-                <div>
-                    <select name="genre">
-                        <option value="">alle genres</option>
+                        ?>
+                        <input name="search" type="text" placeholder="zoek op film naam" value="<?=$searchTerm?>">
+                    </div>
+                    <!--Genre filter-->
+                    <div>
+                        <select name="genre">
+                            <option value="">alle genres</option>
+                                <?php
+                                foreach(get_all_film_genres($dbh) as $genre){
+                                    //autoselect the currently selected in the dropdown
+                                    $selected="";
+                                    if(isset($_GET['genre'])) {
+                                        if($genre == $_GET['genre']){
+                                        $selected = 'selected';
+                                        }
+                                    }
+                                    echo '<option '.$selected.'>'.$genre."</option>";
+                                }
+                                ?>
+                        </select>
+                    </div>
+                    <!--Year filter-->
+                    <div>
+                        <select name="publication_year">
+                            <option value="">Alle jaren</option>
                             <?php
-                            foreach(get_all_film_genres($dbh) as $genre){
+                            foreach(get_all_film_publication_years($dbh) as $year){
                                 //autoselect the currently selected in the dropdown
                                 $selected="";
-                                if(isset($_GET['genre'])) {
-                                    if($genre == $_GET['genre']){
-                                    $selected = 'selected';
+                                if(isset($_GET['publication_year'])) {
+                                    if($year == $_GET['publication_year']){
+                                        $selected = 'selected';
                                     }
                                 }
-                                echo '<option '.$selected.'>'.$genre."</option>";
+                                echo '<option '.$selected.'>'.$year."</option>";
                             }
                             ?>
-                    </select>
-                </div>
-                <!--Year filter-->
-                <div>
-                    <select name="publication_year">
-                        <option value="">sinds het begin der tijden</option>
-                        <?php
-                        foreach(get_all_film_publication_years($dbh) as $year){
-                            //autoselect the currently selected in the dropdown
-                            $selected="";
-                            if(isset($_GET['publication_year'])) {
-                                if($year == $_GET['publication_year']){
-                                    $selected = 'selected';
+                        </select>
+                    </div>
+                    <!--director filter-->
+                    <div>
+                        <select name="director">
+                            <option value="">alle directors</option>
+                            <?php
+                            foreach(get_all_film_directors($dbh) as $id => $director){
+                                //autoselect the currently selected in the dropdown
+                                $selected="";
+                                if(isset($_GET['director'])) {
+                                    if($id == $_GET['director']){
+                                        $selected = 'selected';
+                                    }
                                 }
+                                echo '<option '.$selected.' value="'.$id.'">'.$director."</option>";
                             }
-                            echo '<option '.$selected.'>'.$year."</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <!--director filter-->
-                <div>
-                    <select name="director">
-                        <option value="">alle directors</option>
-                        <?php
-                        foreach(get_all_film_directors($dbh) as $id => $director){
-                            //autoselect the currently selected in the dropdown
-                            $selected="";
-                            if(isset($_GET['director'])) {
-                                if($id == $_GET['director']){
-                                    $selected = 'selected';
-                                }
-                            }
-                            echo '<option '.$selected.' value="'.$id.'">'.$director."</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div>
-                <button class="no-margin">filter</button>
+                            ?>
+                        </select>
+                    </div>
+                    <div>
+                    <button class="no-margin">filter</button>
+                    </div>
                 </div>
             </div>
        </form>
@@ -112,6 +112,7 @@ include_once 'partial/nav.php';
             $filterText="";
             $filter="";
             //apply filters
+            //search by film name
             if(isset($_GET['search'])) {
                 if(!empty($_GET['search'])){
                     $filter .= " and movie.[title] like " . $dbh->quote("%".$_GET['search']."%")."";

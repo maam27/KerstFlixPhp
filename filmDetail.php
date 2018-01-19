@@ -11,15 +11,15 @@
 <?php
 //load required functions
 require_once 'php/db-functions.php';
+require_once 'php/film-functions.php';
+require_once 'php/user-functions.php';
 //open database connection
 $dbh = db_connect();
 session_start();
 //load navigation menu
-include_once 'partial/nav.php';
-include_once 'php/film-functions.php';
-include_once 'php/user-functions.php';
-
 require_Login();
+
+include_once 'partial/nav.php';
 
 $row = getMovieDetails($dbh, $_GET["movie"]);
 
@@ -41,7 +41,7 @@ $img = (!IS_NULL($row['cover_image'])) ? $row['cover_image'] : "missing_image.pn
                                 class="highlight">trailer</span></a></strong></p>
         </div>
     </div>
-    <div class="full-width">
+    <div class="full-width margin-top">
         <div class="full-width">
             <p><strong>Beschrijving:</strong></p>
             <p><?= $row["description"] ?></p>
