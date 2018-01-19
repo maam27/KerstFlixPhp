@@ -9,13 +9,13 @@
 </head>
 <body>
 <?php
-    //load required functions
-    require_once 'php/db-functions.php';
-    require_once 'php/user-functions.php';
-    require_once 'php/general-functions.php';
-    //open database connection
-    $dbh = db_connect();
-    session_start();
+//load required functions
+require_once 'php/db-functions.php';
+require_once 'php/user-functions.php';
+require_once 'php/general-functions.php';
+//open database connection
+$dbh = db_connect();
+session_start();
 
     if(user_is_logged_in()){
         redirect('index.php');
@@ -23,6 +23,8 @@
     //load navigation menu
     include_once 'partial/nav.php';
 ?>
+
+
 
 <?php
 //controleer of alles is ingevuld

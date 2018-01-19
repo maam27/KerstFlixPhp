@@ -10,13 +10,13 @@
 </head>
 <body>
 <?php
-    //load required functions
-    require_once 'php/db-functions.php';
-    //open database connection
-    $dbh = db_connect();
-    session_start();
-    //load navigation menu
-    include_once 'partial/nav.php';
+//load required functions
+require_once 'php/db-functions.php';
+//open database connection
+$dbh = db_connect();
+session_start();
+//load navigation menu
+include_once 'partial/nav.php';
 ?>
 
 <h1>Welkom bij KerstFlix!</h1>
@@ -25,7 +25,8 @@
     voor te gaan zitten met een mok chocolademelk. Of je nou met je familie een filmavond houdt, of even een momentje
     alleen wilt zijn, wij hebben precies de film die jij nodig hebt!</p>
 <br>
-<p>Om in te loggen of te registreren, klik rechtsbovenin op "Account". Om bij de films te komen, klik op "Films" in de
+<p>Om in te loggen of te registreren, klik rechtsbovenin op de gewenste keuze. Om bij de films te komen, klik op "Films"
+    in de
     navigatiebalk.</p>
 <?php
 include 'partial/footer.php'
