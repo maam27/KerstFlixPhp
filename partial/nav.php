@@ -13,8 +13,8 @@ require_once 'php/user-functions.php';
                     <ul>
                         <li><a href="films.php">Alle films</a></li>
                         <li><a href="filmoverzicht.php#recent">Recent Toegevoegd</a></li>
-                        <li><a href="filmoverzicht.php#Action">Action</a></li>
-                        <li><a href="filmoverzicht.php#Sci-Fi">Sci-FI</a></li>
+                        <li><a href="filmoverzicht.php#Comedy">Comedy</a></li>
+                        <li><a href="filmoverzicht.php#Family">Family</a></li>
                     </ul>
                 </li>
                 <li><a href="overons.php">Over ons</a></li>
