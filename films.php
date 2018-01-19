@@ -134,7 +134,8 @@ include_once 'partial/nav.php';
                     $filter .= " and movie_director.person_id = " . $dbh->quote($_GET['director']);
                 }
             }
-            $order = "movie.movie_id desc";
+            $order = "movie.[publication_year] desc, movie.[title] asc";
+
             echo '<div class="full-width margin-bottom"><p> Beschikbare films';
             if(!empty($filterText)){
                 echo $filterText;

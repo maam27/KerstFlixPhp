@@ -190,6 +190,10 @@ movie
     padding: 0 5px;
 }
 
+.movie .img-div{
+    height:259px;
+}
+
 .movie .title h3 {
     font-size: 20px;
     display: block;
